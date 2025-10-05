@@ -1,0 +1,1 @@
+def ggTRekursiv(a: Int, b: Int) : Int = if(b==0) a else ggTRekusiv(b, a%b)
