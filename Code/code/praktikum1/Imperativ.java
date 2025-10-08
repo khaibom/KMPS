@@ -13,7 +13,7 @@ public class Imperativ {
 	static int current_track = 0;
 	static int current_character = 0;
 	
-	static String file_path = ("alben.xml");
+	static String file_path = ("Code/code/praktikum1/alben.xml");
 	static ArrayList<Album> albums = new ArrayList<Album>();
 	
 	public static void main(String[] args) throws IOException {
