@@ -5,6 +5,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Funktional {
 
@@ -14,6 +15,8 @@ public class Funktional {
         byte[] file_contents = Files.readAllBytes(Paths.get(file_path));
         ArrayList<String> tokens = createTokenList(file_contents, 0, new ArrayList<>());
         System.out.println(tokens);
+        ArrayList<Album> albums = parseFile(new ArrayList<Album>(), tokens, false, false, 0, 0, 0);
+        System.out.println(albums);
     }
 
     public static ArrayList<String> createTokenList(byte[] file_contents, int current_character, ArrayList<String> tokens) {
@@ -94,4 +97,111 @@ public class Funktional {
         }
     }
 
+    public static ArrayList<Album> parseFile(ArrayList<Album> albums, ArrayList<String> tokens, Boolean is_in_album, Boolean is_in_track, int current_album, int current_track, int i) {
+        if(i<tokens.size()){
+            if(tokens.get(i).equals("album")){
+                albums.add(new Album());
+                return parseFile(albums, tokens, true, is_in_track, albums.size()-1, current_track, i+1);
+            }
+            else if(tokens.get(i).equals("/album")){
+                return parseFile(albums, tokens, false, is_in_track, current_album, current_track, i+1);
+            }
+            else if(tokens.get(i).equals("track")){
+                albums.get(current_album).tracks.add(new Track());
+                return parseFile(albums, tokens, is_in_album, true, current_album, albums.get(current_album).tracks.size()-1, i+1);
+            }
+            else if(tokens.get(i).equals("/track")){
+                return parseFile(albums, tokens, is_in_album, false, current_album, current_track, i+1);
+            }
+            else if(tokens.get(i).equals("title")){
+                if(!tokens.get(i+1).equals("/title")){
+                    if(is_in_track)
+                        albums.get(current_album).tracks.get(current_track).title = tokens.get(i+1);
+                    else if(is_in_album)
+                        albums.get(current_album).title = tokens.get(i+1);
+                    return parseFile(albums, tokens, is_in_album, is_in_track, current_album, current_track, i+2);
+                }
+                else{
+                    return parseFile(albums, tokens, is_in_album, is_in_track, current_album, current_track, i+1);
+                }
+            }
+            else if(tokens.get(i).equals("/title")){
+                return parseFile(albums, tokens, is_in_album, is_in_track, current_album, current_track, i+1);
+            }
+            else if(tokens.get(i).equals("length")){
+                if (!tokens.get(i+1).equals("/length")){
+                    albums.get(current_album).tracks.get(current_track).length = tokens.get(i+1);
+                    return parseFile(albums, tokens, is_in_album, is_in_track, current_album, current_track, i+2);
+                }
+                else{
+                    return parseFile(albums, tokens, is_in_album, is_in_track, current_album, current_track, i+1);
+                }
+            }
+            else if(tokens.get(i).equals("/length")){
+                return parseFile(albums, tokens, is_in_album, is_in_track, current_album, current_track, i+1);
+            }
+            else if(tokens.get(i).equals("rating")){
+                if(!tokens.get(i+1).equals("/rating")){
+                    albums.get(current_album).tracks.get(current_track).rating = Integer.parseInt(tokens.get(i+1));
+                    return parseFile(albums, tokens, is_in_album, is_in_track, current_album, current_track, i+2);
+                }
+                else {
+                    return parseFile(albums, tokens, is_in_album, is_in_track, current_album, current_track, i+1);
+                }
+            }
+            else if(tokens.get(i).equals("/rating")){
+                return parseFile(albums, tokens, is_in_album, is_in_track, current_album, current_track, i+1);
+            }
+            else if(tokens.get(i).equals("date")){
+                if(!tokens.get(i+1).equals("/date")){
+                    albums.get(current_album).date = tokens.get(i+1);
+                    return parseFile(albums, tokens, is_in_album, is_in_track, current_album, current_track, i+2);
+                }
+                else{
+                    return parseFile(albums, tokens, is_in_album, is_in_track, current_album, current_track, i+1);
+                }
+            }
+            else if(tokens.get(i).equals("/date")){
+                return parseFile(albums, tokens, is_in_album, is_in_track, current_album, current_track, i+1);
+            }
+            else if(tokens.get(i).equals("artist")){
+                if(!tokens.get(i+1).equals("/artist")){
+                    albums.get(current_album).artist = tokens.get(i+1);
+                    return parseFile(albums, tokens, is_in_album, is_in_track, current_album, current_track, i+2);
+                }
+                else{
+                    return parseFile(albums, tokens, is_in_album, is_in_track, current_album, current_track, i+1);
+                }
+            }
+            else if(tokens.get(i).equals("/artist")){
+                return parseFile(albums, tokens, is_in_album, is_in_track, current_album, current_track, i+1);
+            }
+            else if(tokens.get(i).equals("writing")){
+                if (!tokens.get(i+1).equals("/writing")){
+                    albums.get(current_album).tracks.get(current_track).writers.add(tokens.get(i+1));
+                    return parseFile(albums, tokens, is_in_album, is_in_track, current_album, current_track, i+2);
+                }
+                else{
+                    return parseFile(albums, tokens, is_in_album, is_in_track, current_album, current_track, i+1);
+
+                }
+            }
+            else if(tokens.get(i).equals("/writing")){
+                return parseFile(albums, tokens, is_in_album, is_in_track, current_album, current_track, i+1);
+            }
+            else if(tokens.get(i).equals("feature")){
+                if(!tokens.get(i+1).equals("/feature")){
+                    albums.get(current_album).tracks.get(current_track).features.add(tokens.get(i+1));
+                    return parseFile(albums, tokens, is_in_album, is_in_track, current_album, current_track, i+2);
+                }
+                else{
+                    return parseFile(albums, tokens, is_in_album, is_in_track, current_album, current_track, i+1);
+                }
+            }
+            else if(tokens.get(i).equals("/feature")){
+                return parseFile(albums, tokens, is_in_album, is_in_track, current_album, current_track, i+1);
+            }
+        }
+        return albums;
+    }
 }
