@@ -1,0 +1,74 @@
+<album>
+	<track>
+		<writing>writer 1</writing>
+		<feature>feature 1</feature>
+		<feature>feature 2</feature>
+		<title>title 1</title>
+		<writing>writer 2</writing>
+		<length>1:00</length>
+		<rating>1</rating>
+	</track>
+	<track>
+		<title>track 2</title>
+	</track>
+	<artist>artist 1</artist>
+	<title>Test Album</title>
+	<date>17.10.2018</date>
+</album>
+
+<album>
+	<title>Thriller</title>
+	<artist>Michael Jackson</artist>
+	<date>30.11.1982</date>
+	<track>
+		<title>Wanna Be Startin’ Somethin</title>
+		<length>6:03</length>
+		<writing>Michael Jackson</writing>
+		<rating>3</rating>
+	</track>
+	<track>
+		<title>Baby Be Mine</title>
+		<length>4:20</length>
+		<writing>Rod Temperton</writing>
+		<rating>4</rating>
+	</track>
+	<track>
+		<title>The Girl Is Mine</title>
+		<length>3:42</length>
+		<feature>Paul McCartney</feature>
+		<writing>Michael Jackson</writing>
+		<rating>3</rating>
+	</track>
+	<track>
+		<title>Thriller</title>
+		<length>5:57</length>
+		<writing>Rod Temperton</writing>
+		<rating>5</rating>
+	</track>
+	<track>
+		<title>Billie Jean</title>
+		<length>4:54</length>
+		<writing>Michael Jackson</writing>
+		<rating>5</rating>
+	</track>
+	<track>
+		<title>Human Nature</title>
+		<length>4:06</length>
+		<writing>Steve Porcaro</writing>
+		<writing>John Bettis</writing>
+		<rating>3</rating>
+	</track>
+	<track>
+		<title>P.Y.T. (Pretty Young Thing)</title>
+		<length>3:59</length>
+		<writing>James Ingram</writing>
+		<writing>Quincy Jones</writing>
+		<rating>4</rating>
+	</track>
+	<track>
+		<title>The Lady in My Life</title>
+		<length>5:00</length>
+		<writing>Rod Temperton</writing>
+		<rating>3</rating>
+	</track>
+</album>
