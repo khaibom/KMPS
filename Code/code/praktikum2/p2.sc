@@ -38,26 +38,30 @@ val tokenList : List[String] = createTokenList(source)
 // Aufgabe 3:
 def parseTrackHelp(xs: List[String], title: String, length: String, rating:Int, features: List[String], writers: List[String]) : Track = xs match {
   case Nil => Track(title, length, rating, features, writers)
+  case "/track"::ys => Track(title, length, rating, features, writers)
   case "title"::y::"/title"::ys => parseTrackHelp(ys, y, length, rating, features, writers)
   case "length"::y::"/length"::ys => parseTrackHelp(ys, title, y, rating, features, writers)
   case "rating"::y::"/rating"::ys => parseTrackHelp(ys, title, length, y.toInt, features, writers)
-  case "features"::y::"/features"::ys => parseTrackHelp(ys, title, length, rating, features:+y, writers)
-  case "writers"::y::"/writers"::ys => parseTrackHelp(ys, title, length, rating, features, writers:+y)
-  case "/track"::ys => Track(title, length, rating, features, writers)
+  case "feature"::y::"/feature"::ys => parseTrackHelp(ys, title, length, rating, features:+y, writers)
+  case "writing"::y::"/writing"::ys => parseTrackHelp(ys, title, length, rating, features, writers:+y)
   case y::ys => parseTrackHelp(ys, title, length, rating, features, writers)
 }
 def parseTrack(xs: List[String]) : Track = parseTrackHelp(xs, "", "", 0, Nil, Nil)
 
-def parseAlbumHelp(xs: List[String], title:String, date:String, artist:String, tracks: List[Track]) : Album = xs match {
+def parseAlbumHelp(xs: List[String], title:String, date:String, artist:String, tracks: List[Track], isInTrack: Boolean) : Album = xs match {
   case Nil => Album(title, date, artist, tracks)
-  case "title"::y::"/title"::ys => parseAlbumHelp(ys, y, date, artist, tracks)
-  case "date"::y::"/date"::ys => parseAlbumHelp(ys, title, y, artist, tracks)
-  case "artist"::y::"/artist"::ys => parseAlbumHelp(ys, title, date, y, tracks)
-  case "track"::ys => parseAlbumHelp(ys, title, date, artist, tracks:+parseTrack(ys))
   case "/album"::ys => Album(title, date, artist, tracks)
-  case y::ys => parseAlbumHelp(ys, title, date, artist, tracks)
+  case "title"::y::"/title"::ys => isInTrack match{
+    case true => parseAlbumHelp(ys, title, date, artist, tracks, isInTrack)
+    case false=> parseAlbumHelp(ys, y, date, artist, tracks, isInTrack)
+  }
+  case "date"::y::"/date"::ys => parseAlbumHelp(ys, title, y, artist, tracks, isInTrack)
+  case "artist"::y::"/artist"::ys => parseAlbumHelp(ys, title, date, y, tracks, isInTrack)
+  case "track"::ys => parseAlbumHelp(ys, title, date, artist, tracks:+parseTrack(ys), true)
+  case "/track"::ys => parseAlbumHelp(ys, title, date, artist, tracks, false)
+  case y::ys => parseAlbumHelp(ys, title, date, artist, tracks, isInTrack)
 }
-def parseAlbum(xs: List[String]) : Album = parseAlbumHelp(xs, "", "", "", Nil)
+def parseAlbum(xs: List[String]) : Album = parseAlbumHelp(xs, "", "", "", Nil, false)
 
 def createAlbumList(xs: List[String], albumList: List[Album]): List[Album] = xs match{
   case Nil => albumList
