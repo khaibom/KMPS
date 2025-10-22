@@ -35,5 +35,37 @@ def createTokenList(source: List[Char]) : List[String] = source match{
   case _ => findToken(source, isInATag = false, isContent = false, "", Nil)
 }
 
-//var tokenList_test : List[String] = createTokenList(source_test)
-var tokenList : List[String] = createTokenList(source)
+val token_list_test : List[String] = createTokenList(source_test)
+val tokenList : List[String] = createTokenList(source)
+
+def parseTrackHelp(xs: List[String], title: String, length: String, rating:Int, features: List[String], writers: List[String]) : Track = xs match {
+  case Nil => Track(title, length, rating, features, writers)
+  case "title"::y::"/title"::ys => parseTrackHelp(ys, y, length, rating, features, writers)
+  case "length"::y::"/length"::ys => parseTrackHelp(ys, title, y, rating, features, writers)
+  case "rating"::y::"/rating"::ys => parseTrackHelp(ys, title, length, y.toInt, features, writers)
+  case "features"::y::"/features"::ys => parseTrackHelp(ys, title, length, rating, features:+y, writers)
+  case "writers"::y::"/writers"::ys => parseTrackHelp(ys, title, length, rating, features, writers:+y)
+  case "/track"::ys => Track(title, length, rating, features, writers)
+  case y::ys => parseTrackHelp(ys, title, length, rating, features, writers)
+}
+def parseTrack(xs: List[String]) : Track = parseTrackHelp(xs, "", "", 0, Nil, Nil)
+
+def parseAlbumHelp(xs: List[String], title:String, date:String, artist:String, tracks: List[Track]) : Album = xs match {
+  case Nil => Album(title, date, artist, tracks)
+  case "title"::y::"/title"::ys => parseAlbumHelp(ys, y, date, artist, tracks)
+  case "date"::y::"/date"::ys => parseAlbumHelp(ys, title, y, artist, tracks)
+  case "artist"::y::"/artist"::ys => parseAlbumHelp(ys, title, date, y, tracks)
+  case "track"::ys => parseAlbumHelp(ys, title, date, artist, tracks:+parseTrack(ys))
+  case "/album"::ys => Album(title, date, artist, tracks)
+  case y::ys => parseAlbumHelp(ys, title, date, artist, tracks)
+}
+def parseAlbum(xs: List[String]) : Album = parseAlbumHelp(xs, "", "", "", Nil)
+
+def createAlbumList(xs: List[String]): List[Album] = xs match{
+  case Nil => Nil
+  case "album"::ys => parseAlbum(ys)::createAlbumList(ys)
+  case y::ys => createAlbumList(ys)
+}
+
+val albumList : List[Album] = createAlbumList(tokenList)
+val album_list_test : List[Album] = createAlbumList(token_list_test)
