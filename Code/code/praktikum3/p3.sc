@@ -6,7 +6,7 @@ import scala.io.Source
 case class Track(title: String, length: String, rating: Int, features: List[String], writers: List[String])
 case class Album(title: String, date: String, artist: String, tracks: List[Track])
 
-val source : List[Char] = Source.fromFile("/Users/khai.tran/FHAC/kmps/Code/code/praktikum2/alben.xml").toList
+val source : List[Char] = Source.fromFile("D:\\FH Aachen\\Sem 5\\KMPS\\Code\\code\\praktikum2\\alben.xml").toList
 //P2:
 def findToken(xs: List[Char], isInATag: Boolean, isContent: Boolean, token: String, tokenList: List[String]) : List[String] = xs match{
   case Nil => tokenList
@@ -160,25 +160,21 @@ def createTokenListNew(source: List[Char]) : List[String] = {
 val newTokenList = createTokenListNew(source)
 
 //4
-def sum(f: Int => Int)(a: Int, b: Int): Int = {
+def sum(a: Int, b: Int): Int = a+b
+def prod(a: Int, b: Int): Int = a*b
+
+def a4(f1: Int => Int)(f2: (Int, Int) => Int, init: Int)(a: Int, b: Int): Int = {
   def iter(a: Int, result: Int): Int = (a>b) match {
     case true => result
-    case false => iter(a+1, result+f(a))
+    case false => iter(a+1, f2(f1(a), result))
   }
-  iter(a,0)
+  iter(a, init)
 }
-sum(x=>x)(1,3)
+def sum_4a(a:Int, b:Int) = a4(x=>x)(sum, 0)(a,b)
+def prod_4a(a:Int, b:Int) = a4(x=>x)(prod, 1)(1,3)
 
-def prod(f: Int => Int)(a: Int, b: Int): Int = {
-  def iter(a: Int, result: Int): Int = (a>b) match {
-    case true => result
-    case false => iter(a+1, result*f(a))
-  }
-  iter(a,1)
-}
-prod(x=>x)(1,4)
-
-
+sum_4a(1,4)
+prod_4a(1,4)
 //4.b. left-folding
 
 //c.
