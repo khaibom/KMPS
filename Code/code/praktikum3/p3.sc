@@ -187,7 +187,11 @@ a4(x=>x)(_*_, 1)(1,4)
 * iter(4, f2(f2(f2(result, f1(1)), f1(2)), f1(3))
 * left-folding
 */
+
 //c.
+a4(x=>x)(_+_, 0)(4,1) //=0
+a4(x=>x)(_*_, 1)(4,1) //=1
+// sinvoll -> Fehler wenn ein leerer Wertebereich
 
 //d.
 def d4(a: Int, b: Int): Int = {
