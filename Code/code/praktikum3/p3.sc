@@ -166,17 +166,27 @@ def prod(a: Int, b: Int): Int = a*b
 def a4(f1: Int => Int)(f2: (Int, Int) => Int, init: Int)(a: Int, b: Int): Int = {
   def iter(a: Int, result: Int): Int = (a>b) match {
     case true => result
-    case false => iter(a+1, f2(f1(a), result))
+    case false => iter(a+1, f2(result, f1(a)))
   }
   iter(a, init)
 }
 def sum_4a(a:Int, b:Int) = a4(x=>x)(sum, 0)(a,b)
-def prod_4a(a:Int, b:Int) = a4(x=>x)(prod, 1)(1,3)
+def prod_4a(a:Int, b:Int) = a4(x=>x)(prod, 1)(a,b)
 
 sum_4a(1,4)
 prod_4a(1,4)
-//4.b. left-folding
 
+a4(x=>x)(_+_, 0)(1,4)
+a4(x=>x)(_*_, 1)(1,4)
+
+//4.b.
+/*
+* iter(1, result)
+* iter(2, f2(result, f1(1)))
+* iter(3, f2(f2(result, f1(1)), f1(2)))
+* iter(4, f2(f2(f2(result, f1(1)), f1(2)), f1(3))
+* left-folding
+*/
 //c.
 
 //d.
