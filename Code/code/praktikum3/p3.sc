@@ -189,26 +189,38 @@ a4(x=>x)(_*_, 1)(1,4)
 */
 
 //c.
-a4(x=>x)(_+_, 0)(4,1) //=0
-a4(x=>x)(_*_, 1)(4,1) //=1
+val c4_1 = a4(x=>x)(_+_, 0)(4,1) //=0
+val c4_2 = a4(x=>x)(_*_, 1)(4,1) //=1
 // sinvoll -> Fehler wenn ein leerer Wertebereich
 
 //d.
-def d4(a: Int, b: Int): Int = {
-  def map(f1: Int => Int, a: Int, b: Int, result: Int): Int = (a>b) match{
-    case true => result
-    case false => map(f1, a+1, b, result+a)
-  }
-}/*
-Aufgabe 4:
 
-b. Verwendet Ihre Implementierung aus a. right- oder left-folding? Unter
-welchen Umständen würde das jeweils Andere die Funktionalität Ihres
-Programms ändern?
-c. Wie verhält sich Ihre Implementierung aus a. für einen leeren
-Wertebereich? Welches Verhalten wäre in so einem Fall sinvoll?
-d. Implementieren Sie die Funktion aus a. ohne Rekursion jedoch unter
-Verwendung der Higher-Order-Funktionen map, fold und range auf
-Integer-Listen aus Vorlesung und Übung.
-*/
+def d4(MAP: Int=>Int)(FOLD: (Int,Int)=>Int, init: Int)(a: Int, b: Int): Int = {
+  def map(xs:List[Int], f:Int => Int) : List[Int] =
+    xs match {
+      case Nil => Nil
+      case y :: ys => f(y) :: map(ys,f)
+    }
+
+  def range(a: Int, b:Int) : List[Int] = (a<=b)match{
+    case false => Nil
+    case true => a::range(a+1,b)
+  }
+
+  def fold(f: (Int,Int) => Int, init: Int)(xs: List[Int]) : Int = {
+    def foldHelp(result: Int, xs: List[Int]): Int = xs match{
+      case Nil => result
+      case y::ys => foldHelp(f(result, y), ys)
+    }
+    foldHelp(init, xs)
+  }
+
+  val rangeList = range(a,b)
+  val mappedList = map(rangeList, MAP)
+  val foldedList = fold(FOLD, init)(mappedList)
+  foldedList
+}
+
+d4(x=>x)(sum, 0)(1,4)
+d4(x=>x)(prod, 1)(1,4)
 
