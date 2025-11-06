@@ -1,6 +1,7 @@
 import com.sun.tools.javac.tree.DCTree.isBlank
 
 import java.lang.Character.{isUpperCase, toUpperCase}
+import scala.annotation.tailrec
 import scala.io.Source
 
 case class Track(title: String, length: String, rating: Int, features: List[String], writers: List[String])
