@@ -78,7 +78,12 @@ def poly_map[A,B](xs:List[A], f: A => B) : List[B] = xs match {
   case Nil => Nil
   case y::ys => f(y)::poly_map(ys, f)
 }
-def titleAlbumToUpper(x: Album) : Album = x.copy(title = x.title.toUpperCase())
+def map[A](xs:List[A], f:A => A) : List[A] = xs match{
+  case Nil => Nil
+  case y::ys => f(y)::map(ys, f)
+}
+
+def titleAlbumToUpper(x: Album) : Album = x.copy(title = x.title.toUpperCase()) //better using lambda?
 
 def titleTrackToUpperHelp(x: Track) : Track = x.copy(title = x.title.toUpperCase())
 def titleTrackToUpper(x: Album) : Album = x.copy(tracks = poly_map[Track, Track](x.tracks, titleTrackToUpperHelp))
@@ -104,6 +109,8 @@ val get_second_tracklist = c1 match{
   case _::x::xs => x.tracks
 }
 val getTracksRatingBiggerThan4 = filter[Track](get_second_tracklist, x => x.rating >= 4)
+val b2_ = poly_map[Track, Track](getTracksRatingBiggerThan4, x => x)
+
 val b2 = poly_map[Track, String](getTracksRatingBiggerThan4, x => x.title)
 
 def findTitleFromRTTracks(albumList: List[Album]) : List[String] = {
@@ -147,7 +154,6 @@ val get_second_tracklist = albumList match{
 val b3= partition[Track](get_second_tracklist, x => x.title == "Thriller")
 
 
-def isBlank(s: String): Boolean = s.trim.isEmpty
 
 def createTokenListNew(source: List[Char]) : List[String] = {
   def extractChar(source: List[Char]): List[List[Char]] = partition[Char](source, x => x == '\n' || x == '\r' || x == '\t' || x == '<' || x == '>')
