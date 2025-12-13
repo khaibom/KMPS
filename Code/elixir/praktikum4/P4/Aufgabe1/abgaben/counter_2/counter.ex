@@ -1,0 +1,30 @@
+defmodule CounterWeb.Counter do
+	use CounterWeb, :live_view
+	def mount(params, session, socket) do
+		{:ok, assign(socket, :val, 0)}
+	end
+	
+	def render(assigns) do
+		~H"""
+			<div>
+			<h1 class="text-4xl font-bold text-center"> The count is: <%= @val %> </h1>
+			<p class="text-center">
+				<.button phx-click="add-1"> +1 </.button>
+				<.button phx-click="add-5"> +5 </.button>
+				<.button phx-click="add-10"> +10 </.button>
+			</p></div>
+		"""
+	end
+	def handle_event("add-1", _, socket) do
+		new_state = update(socket, :val, fn val -> val + 1 end)
+		{:noreply, new_state}
+	end
+	def handle_event("add-5", _, socket) do
+		new_state = update(socket, :val, fn val -> val + 5 end)
+		{:noreply, new_state}
+	end
+	def handle_event("add-10", _, socket) do
+		new_state = update(socket, :val, fn val -> val + 10 end)
+		{:noreply, new_state}
+	end
+end
