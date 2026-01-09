@@ -1,0 +1,34 @@
+14:32:47.608 [SERVER] Starting KMPS Ticket System Server
+14:32:47.611 [SERVER] Server listening on http://localhost:8080
+14:32:47.611 [SERVER] Hub started
+14:32:47.611 [SERVER] Press 'n' to create a new ticket
+14:33:02.967 [SERVER] New WebSocket connection
+14:33:02.970 [SERVER] Client registered: user01
+14:33:10.142 [SERVER] New WebSocket connection
+14:33:10.144 [SERVER] Client registered: user02
+14:33:19.682 [SERVER] New WebSocket connection
+14:33:19.685 [SERVER] Client registered: user03
+14:33:26.659 [SERVER] New ticket created: 1
+14:33:26.664 [SERVER] State broadcasted to 3 client(s)
+14:33:39.913 [SERVER] Ticket 1 assigned to user01
+14:33:39.921 [SERVER] State broadcasted to 3 client(s)
+14:33:49.931 [SERVER] New ticket created: 2
+14:33:49.936 [SERVER] State broadcasted to 3 client(s)
+14:33:55.641 [SERVER] Ticket 2 assigned to user02
+14:33:55.648 [SERVER] State broadcasted to 3 client(s)
+14:33:58.527 [SERVER] New ticket created: 3
+14:33:58.533 [SERVER] State broadcasted to 3 client(s)
+14:34:03.769 [SERVER] Ticket 3 assigned to user03
+14:34:03.774 [SERVER] State broadcasted to 3 client(s)
+14:34:06.541 [SERVER] New ticket created: 4
+14:34:06.548 [SERVER] State broadcasted to 3 client(s)
+14:34:14.986 [SERVER] Ticket 4 assigned to user02
+14:34:14.998 [SERVER] State broadcasted to 3 client(s)
+14:34:18.282 [SERVER] New ticket created: 5
+14:34:18.286 [SERVER] State broadcasted to 3 client(s)
+14:34:25.969 [SERVER] Ticket 5 assigned to user01
+14:34:25.975 [SERVER] State broadcasted to 3 client(s)
+14:34:28.258 [SERVER] New ticket created: 6
+14:34:28.261 [SERVER] State broadcasted to 3 client(s)
+14:34:36.130 [SERVER] Ticket 6 assigned to user01
+14:34:36.133 [SERVER] State broadcasted to 3 client(s)

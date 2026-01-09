@@ -1,0 +1,74 @@
+14:33:05.243 [CLIENT unknown] Please enter your client ID and click Connect
+14:33:10.141 [CLIENT user02] Connecting to ws://localhost:8080/ws as user02
+14:33:10.144 [CLIENT user02] WebSocket connection opened
+14:33:10.144 [CLIENT user02] Sent register message: client_id=user02
+14:33:10.150 [CLIENT user02] Received message: {"message_type":"state"}
+14:33:10.150 [CLIENT user02] Error parsing message: Cannot read properties of undefined (reading 'length')
+14:33:26.666 [CLIENT user02] Received message: {"message_type":"state","tickets":[{"ticket_id":1,"assigned_to":""}]}
+14:33:26.667 [CLIENT user02] State update received: 1 tickets
+14:33:26.667 [CLIENT user02] Ticket 1: (unassigned)
+14:33:39.922 [CLIENT user02] Received message: {"message_type":"state","tickets":[{"ticket_id":1,"assigned_to":"user01"}]}
+14:33:39.922 [CLIENT user02] State update received: 1 tickets
+14:33:39.922 [CLIENT user02] Ticket 1: user01
+14:33:49.938 [CLIENT user02] Received message: {"message_type":"state","tickets":[{"ticket_id":1,"assigned_to":"user01"},{"ticket_id":2,"assigned_to":""}]}
+14:33:49.938 [CLIENT user02] State update received: 2 tickets
+14:33:49.938 [CLIENT user02] Ticket 1: user01
+14:33:49.938 [CLIENT user02] Ticket 2: (unassigned)
+14:33:55.640 [CLIENT user02] Sent assign_ticket message: client_id=user02, ticket_id=2
+14:33:55.648 [CLIENT user02] Received message: {"message_type":"state","tickets":[{"ticket_id":1,"assigned_to":"user01"},{"ticket_id":2,"assigned_to":"user02"}]}
+14:33:55.648 [CLIENT user02] State update received: 2 tickets
+14:33:55.648 [CLIENT user02] Ticket 1: user01
+14:33:55.648 [CLIENT user02] Ticket 2: user02
+14:33:58.533 [CLIENT user02] Received message: {"message_type":"state","tickets":[{"ticket_id":1,"assigned_to":"user01"},{"ticket_id":2,"assigned_to":"user02"},{"ticket_id":3,"assigned_to":""}]}
+14:33:58.533 [CLIENT user02] State update received: 3 tickets
+14:33:58.534 [CLIENT user02] Ticket 1: user01
+14:33:58.534 [CLIENT user02] Ticket 2: user02
+14:33:58.534 [CLIENT user02] Ticket 3: (unassigned)
+14:34:03.776 [CLIENT user02] Received message: {"message_type":"state","tickets":[{"ticket_id":1,"assigned_to":"user01"},{"ticket_id":2,"assigned_to":"user02"},{"ticket_id":3,"assigned_to":"user03"}]}
+14:34:03.776 [CLIENT user02] State update received: 3 tickets
+14:34:03.776 [CLIENT user02] Ticket 1: user01
+14:34:03.776 [CLIENT user02] Ticket 2: user02
+14:34:03.776 [CLIENT user02] Ticket 3: user03
+14:34:06.548 [CLIENT user02] Received message: {"message_type":"state","tickets":[{"ticket_id":1,"assigned_to":"user01"},{"ticket_id":2,"assigned_to":"user02"},{"ticket_id":3,"assigned_to":"user03"},{"ticket_id":4,"assigned_to":""}]}
+14:34:06.549 [CLIENT user02] State update received: 4 tickets
+14:34:06.549 [CLIENT user02] Ticket 1: user01
+14:34:06.549 [CLIENT user02] Ticket 2: user02
+14:34:06.549 [CLIENT user02] Ticket 3: user03
+14:34:06.549 [CLIENT user02] Ticket 4: (unassigned)
+14:34:14.985 [CLIENT user02] Sent assign_ticket message: client_id=user02, ticket_id=4
+14:34:14.999 [CLIENT user02] Received message: {"message_type":"state","tickets":[{"ticket_id":1,"assigned_to":"user01"},{"ticket_id":2,"assigned_to":"user02"},{"ticket_id":3,"assigned_to":"user03"},{"ticket_id":4,"assigned_to":"user02"}]}
+14:34:14.999 [CLIENT user02] State update received: 4 tickets
+14:34:14.999 [CLIENT user02] Ticket 1: user01
+14:34:14.999 [CLIENT user02] Ticket 2: user02
+14:34:14.999 [CLIENT user02] Ticket 3: user03
+14:34:14.999 [CLIENT user02] Ticket 4: user02
+14:34:18.287 [CLIENT user02] Received message: {"message_type":"state","tickets":[{"ticket_id":1,"assigned_to":"user01"},{"ticket_id":2,"assigned_to":"user02"},{"ticket_id":3,"assigned_to":"user03"},{"ticket_id":4,"assigned_to":"user02"},{"ticket_id":5,"assigned_to":""}]}
+14:34:18.287 [CLIENT user02] State update received: 5 tickets
+14:34:18.287 [CLIENT user02] Ticket 1: user01
+14:34:18.287 [CLIENT user02] Ticket 2: user02
+14:34:18.287 [CLIENT user02] Ticket 3: user03
+14:34:18.287 [CLIENT user02] Ticket 4: user02
+14:34:18.287 [CLIENT user02] Ticket 5: (unassigned)
+14:34:25.976 [CLIENT user02] Received message: {"message_type":"state","tickets":[{"ticket_id":1,"assigned_to":"user01"},{"ticket_id":2,"assigned_to":"user02"},{"ticket_id":3,"assigned_to":"user03"},{"ticket_id":4,"assigned_to":"user02"},{"ticket_id":5,"assigned_to":"user01"}]}
+14:34:25.976 [CLIENT user02] State update received: 5 tickets
+14:34:25.976 [CLIENT user02] Ticket 1: user01
+14:34:25.977 [CLIENT user02] Ticket 2: user02
+14:34:25.977 [CLIENT user02] Ticket 3: user03
+14:34:25.977 [CLIENT user02] Ticket 4: user02
+14:34:25.977 [CLIENT user02] Ticket 5: user01
+14:34:28.261 [CLIENT user02] Received message: {"message_type":"state","tickets":[{"ticket_id":1,"assigned_to":"user01"},{"ticket_id":2,"assigned_to":"user02"},{"ticket_id":3,"assigned_to":"user03"},{"ticket_id":4,"assigned_to":"user02"},{"ticket_id":5,"assigned_to":"user01"},{"ticket_id":6,"assigned_to":""}]}
+14:34:28.262 [CLIENT user02] State update received: 6 tickets
+14:34:28.262 [CLIENT user02] Ticket 1: user01
+14:34:28.262 [CLIENT user02] Ticket 2: user02
+14:34:28.262 [CLIENT user02] Ticket 3: user03
+14:34:28.262 [CLIENT user02] Ticket 4: user02
+14:34:28.262 [CLIENT user02] Ticket 5: user01
+14:34:28.262 [CLIENT user02] Ticket 6: (unassigned)
+14:34:36.133 [CLIENT user02] Received message: {"message_type":"state","tickets":[{"ticket_id":1,"assigned_to":"user01"},{"ticket_id":2,"assigned_to":"user02"},{"ticket_id":3,"assigned_to":"user03"},{"ticket_id":4,"assigned_to":"user02"},{"ticket_id":5,"assigned_to":"user01"},{"ticket_id":6,"assigned_to":"user01"}]}
+14:34:36.134 [CLIENT user02] State update received: 6 tickets
+14:34:36.134 [CLIENT user02] Ticket 1: user01
+14:34:36.134 [CLIENT user02] Ticket 2: user02
+14:34:36.134 [CLIENT user02] Ticket 3: user03
+14:34:36.134 [CLIENT user02] Ticket 4: user02
+14:34:36.134 [CLIENT user02] Ticket 5: user01
+14:34:36.134 [CLIENT user02] Ticket 6: user01

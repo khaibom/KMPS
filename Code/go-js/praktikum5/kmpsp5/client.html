@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>KMPS P5 Ticket Client</title>
+</head>
+<body>
+    <h1>KMPS P5 Ticket System</h1>
+    
+    <p>
+        Client ID: <input type="text" id="clientId">
+        <button onclick="connect()">Connect</button>
+        <span id="status" style="font-weight: bold; color: red;">Disconnected</span>
+    </p>
+
+    <h2>Tickets</h2>
+    <div id="tickets" style="font-family: monospace; white-space: pre;"></div>
+
+    <p>
+        Assign ticket number: <input type="number" id="ticketNum">
+        <button onclick="assignTicket()">Assign to me</button>
+    </p>
+
+    <hr>
+
+    <p>
+        <button onclick="downloadLog()" style="background-color: #008CBA;">Download Log File</button>
+    </p>
+
+    <script src="client.js"></script>
+</body>
+</html>
+
